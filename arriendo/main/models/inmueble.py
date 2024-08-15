@@ -26,8 +26,8 @@ class Inmueble(models.Model):
         db_table = 'inmueble'
 
 class InmuebleArrendatarios(models.Model):
-    inm_id = models.ForeignKey(Inmueble, models.DO_NOTHING, db_column='inm_id', primary_key=True)
-    usu_rut = models.ForeignKey(Usuario, models.DO_NOTHING, db_column='usu_rut', primary_key=True)
+    inm_id = models.ForeignKey(Inmueble, models.DO_NOTHING, db_column='inm_id')
+    usu_rut = models.ForeignKey(Usuario, models.DO_NOTHING, db_column='usu_rut')
     ia_estado = models.BooleanField(default=True)
     ia_fecha_inicio = models.DateField(default=date.today)
     ia_fecha_fin = models.DateField(blank=True, null=True)
