@@ -1,0 +1,21 @@
+{% include 'basehead.html' %}
+
+<body class="p-2">
+    {% include 'menu.html' %}
+    <h2>Inmueble</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="{% url 'addInmueble' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Grabar">
+    </form>
+
+    {% include 'base.html' %}
+</body>

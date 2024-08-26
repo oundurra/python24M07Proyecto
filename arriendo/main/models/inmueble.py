@@ -35,3 +35,12 @@ class InmuebleArrendatarios(models.Model):
     class Meta:
         managed = False
         db_table = 'inmueble_arrendatario'
+
+class InmuebleFoto(models.Model):
+    foto_id = models.AutoField(primary_key=True)
+    foto_ruta = models.CharField(max_length=200, blank=True, null=True)
+    inm = models.ForeignKey('Inmueble', models.DO_NOTHING, blank=True, null=True, related_name='inmueble')
+
+    class Meta:
+        managed = False
+        db_table = 'inmueble_foto'

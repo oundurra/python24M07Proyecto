@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from main.models.usuario import Usuario
+from main.services.inmueble import getInmuebleAll
+from main.services.usuario import getUsuarioById
  
 @login_required
 def index(request):
-    usuario = Usuario.objects.filter(user_id=request.user.id).first()
+    usuario = getUsuarioById(request.user.id)
+    inmuebles = getInmuebleAll()
 
-    return render(request,'index.html',{"usuario":usuario})
+    return render(request,'index.html',{"usuario":usuario, "inmuebles":inmuebles})

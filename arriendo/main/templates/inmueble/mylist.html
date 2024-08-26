@@ -2,9 +2,16 @@
 
 <body class="p-2">
     {% include 'menu.html' %}
-    <h2>Listado de inmuebles</h2>
-    {% if messages %}
-    <ul class="messages">
+    <h2>Mis Propiedades</h2>
+    <form action="{% url 'addInmueble' %}">
+        <div class="d-flex">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">
+                Agregar
+            </button>
+        </div>
+    </form>
+    {% if messages %} <ul class="messages">
         {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
             {% endfor %}
@@ -21,7 +28,16 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ inmueble.inm_nombre }}</h5>
                     <p class="card-text">{{ inmueble.inm_descripcion }}</p>
-                    <p class="card-text"><small class="text-muted">${{ inmueble.inm_precio|floatformat:"0g" }}</small></p>
+                    <p class="card-text"><small class="text-muted">${{ inmueble.inm_precio|floatformat:"0g"
+                            }}</small>
+                    </p>
+                    <form action="{% url 'viewInmueble' inmueble.inm_id %}" method="post">
+                        {% csrf_token %}
+
+                        <p class="card-text"><small class="text-muted"><input class="btn btn-primary" type="submit"
+                                    value="Editar">
+                    </form>
+                    </small></p>
                 </div>
             </div>
         </div>
